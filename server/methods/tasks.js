@@ -1,7 +1,7 @@
 Meteor.methods({
 	'insertTask': function (task) {
 		var currentUserId = Meteor.userId();
-		tasks = Task.insert({
+		tasks = Tasks.insert({
 			name: task.name,
 			description: task.description,
 			subTasks: task.subTasks,

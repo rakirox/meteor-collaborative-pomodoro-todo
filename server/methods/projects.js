@@ -3,7 +3,7 @@ Meteor.methods({
 		var currentUserId = Meteor.userId();
 		project = Projects.insert({
 			name: project.name,
-			description: description
+			description: project.description
 		});
 		UserProjects.insert({
 			userId: currentUserId,

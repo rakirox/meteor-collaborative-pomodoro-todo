@@ -15,7 +15,17 @@ Router.route('/', function () {
     //this.layout('Layout');
 
     // render the PageOne template
-    this.render('Hello');
+    this.render('Register');
+});
+
+Router.route('/dashboard', function () {
+    // set the layout programmatically
+    //this.layout('Layout');
+
+    // render the PageOne template
+    if (!Meteor.user()) {
+        this.render('Dashboard');
+    }
 });
 
 //Router.route('/MyPomodoro', function () {
