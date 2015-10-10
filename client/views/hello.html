@@ -1,4 +1,8 @@
 <template name="Hello">
-    <h2>This is login stuff</h2>
-    {{time}}
+	<h1>Current User</h1>
+	<ul>
+		{{#each tasks }}	
+			{{> task }}
+		{{/each}}
+	</ul>
 </template>

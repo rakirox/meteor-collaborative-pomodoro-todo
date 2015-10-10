@@ -1,4 +1,4 @@
-var clock = 10;
+/*var clock = 10;
 
 var timeLeft = function() {
     if (clock > 0) {
@@ -17,4 +17,4 @@ if (Meteor.isClient) {
     Template.registerHelper("time", function() {
         return Session.get("time");
     });
-}
+}*/
