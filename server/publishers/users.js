@@ -1,15 +1,13 @@
-Meteor.publish('projectUsers', function () {
-
+Meteor.publish('projectUsers', function (projectId) {
+	return UsersProjects.find({projectId: projectId});
 });
 
-Meteor.publish('taskUsers', function () {
-
-});
-
-Meteor.publish('subTaskTask', function () {
-
+Meteor.publish('userTasks', function (projectId) {
+	var currentUserId = this.userId;
+	return Tasks.find({createdBy: currentUserId, projectId: projectId});
 });
 
 Meteor.publish('userProjects', function () {
-
+	var currentUserId = this.userId;
+	return Projects.find({createdBy: currentUserId});
 });
