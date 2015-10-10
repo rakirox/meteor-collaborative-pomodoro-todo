@@ -1,4 +1,4 @@
 Users = new Mongo.Collection('users');
 Projects = new Mongo.Collection('projects');
 Tasks = new Mongo.Collection('tasks');
-SubTasks = new Mongo.Collection('subTasks')
+SubTasks = new Mongo.Collection('subTasks');
