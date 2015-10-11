@@ -7,19 +7,9 @@
         <h4>BACKLOG</h4>
 
         <div class="backlog column">
-          {{> card}}
-          {{> card}}
-          {{> card}}
-          {{> card}}
-          {{> card}}
-          {{> card}}
-          {{> card}}
-          {{> card}}
-          {{> card}}
-          {{> card}}
-          {{> card}}
-          {{> card}}
-          {{> card}}
+          {{#each todoTasks }}
+            {{> card}}
+          {{/each}}
         </div>
 
       </div>
@@ -28,7 +18,7 @@
         <h4>DOING</h4>
 
         <div class="doing column">
-          {{> card}}
+          {{> currentCard}}
         </div>
 
       </div>
@@ -36,14 +26,9 @@
 
         <h4>DONE</h4>
         <div class="done column">
-          {{> card}}
-          {{> card}}
-          {{> card}}
-          {{> card}}
-          {{> card}}
-          {{> card}}
-          {{> card}}
-          {{> card}}
+          {{#each doneTasks }}
+            {{> card}}
+          {{/each}}
         </div>
       </div>
     </div>

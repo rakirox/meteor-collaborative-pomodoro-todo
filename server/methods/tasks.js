@@ -12,6 +12,23 @@ Meteor.methods({
 	},
 	'deleteTask': function (taskId) {
 		var currentUserId = Meteor.userId();
-		task.remove({ _id: taskId, ownerId: currentUserId});
+		Tasks.remove({ _id: taskId, ownerId: currentUserId});
+	},
+	'doingTask': function (taskId) {
+		var currentUserId = Meteor.currentUserId;
+		doingTasks = Tasks.find({status:'doing'});
+		doingTasks.forEach( function (task) {
+			Tasks.update(taskId, {$set: {status: 'doing'}});	
+		});
+		Tasks.update(taskId, {$set: {status: 'doing'}});
+	},
+	'todoTask': function (taskId) {
+		var currentUserId = Meteor.currentUserId;
+		Tasks.update(taskId, {$set: {status: 'todo'}});
+	},
+	'doneTask': function (taskId) {
+		var currentUserId = Meteor.currentUserId;
+		console.log("calling done task")
+		Tasks.update(taskId, {$set: {status: 'done'}});
 	}
 });

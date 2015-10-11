@@ -33,5 +33,12 @@ Template.Dashboard.events({
 
     rd.show();
     console.log("derp");
+  },
+  'click .startPomo': function (event) {
+    //Meteor.call('startFocusPomo', 'WShuyzjQ6D9pAjRCj', 'bJNQtpCX5SmviBXWM');
+  },
+  'click .dropdown-menu a.doingTaskOption': function (event) {
+    Session.set('currentTask', Tasks.find({_id: this._id}).fetch()[0]);
+    Meteor.call('doingTask',this._id);
   }
 });

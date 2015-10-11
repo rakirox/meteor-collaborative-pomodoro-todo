@@ -3,11 +3,9 @@ Meteor.methods({
 		var currentUserId = Meteor.userId();
 		project = Projects.insert({
 			name: project.name,
-			description: project.description
-		});
-		UserProjects.insert({
-			userId: currentUserId,
-			projectId: project._id
+			description: project.description,
+            userId: currentUserId,
+            collaborators : [currentUserId]
 		});
 	}
 });
