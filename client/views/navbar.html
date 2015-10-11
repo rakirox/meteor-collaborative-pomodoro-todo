@@ -12,6 +12,7 @@
 			</div>
 
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                {{#if currentUser}}
 				<ul class="nav navbar-nav">
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle"
@@ -33,6 +34,7 @@
 
 
 				</ul>
+
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle"
@@ -40,15 +42,16 @@
 												role="button"
 												aria-haspopup="true"
 												aria-expanded="false">
-							JUAN RAMÓN PÉREZ <span class="caret"></span>
+							{{currentEmailUser}} <span class="caret"></span>
 						</a>
 						<ul class="dropdown-menu">
 							<li><a href="#">Edit profile</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="#">Sign out</a></li>
+							    <li><a href="#" id="logOut">Sign out</a></li>
 						</ul>
 					</li>
 				</ul>
+                {{/if}}
 			</div>
 		</div>
 	</nav>
