@@ -1,8 +1,16 @@
 <template name="Register">
-    <form>
+
+    <h1> Register your shit here biatch</h1>
+    <form id="register">
+        <label>Project name</label>
         <input type="text" name="registerProject">
+        <label>email</label>
         <input type="email" name="registerEmail">
+        <label>password</label>
         <input type="password" name="registerPassword">
         <input type="submit" value="Register">
     </form>
+    {{>Login}}
 </template>
+
+

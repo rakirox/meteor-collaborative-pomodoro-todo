@@ -19,8 +19,9 @@ ecmascript              # Enable ECMAScript2015+ syntax in app code
 iron:router
 fourseven:scss
 reywood:bootstrap3-sass
-msavin:mongol
 accounts-password
 fortawesome:fontawesome
 pahans:reactive-modal
 accounts-ui
+msavin:mongol
+meteortoys:allthings

@@ -2,17 +2,18 @@
  * Created by rakirox on 10/10/15.
  */
 Template.Register.events({
-    'submit form': function(event) {
+    'submit #register': function(event) {
         event.preventDefault();
-        console.log("Form submitted.");
+        console.log("register submitted.");
         var emailVar = event.target.registerEmail.value;
         var passwordVar = event.target.registerPassword.value;
         var projectName = event.target.registerPassword.value;
-        Projects.insert({})
         Accounts.createUser({
             email: emailVar,
             password: passwordVar
         });
+        Meteor.call("insertProject",{name:projectName,description:""});
+
 
     }
 });
