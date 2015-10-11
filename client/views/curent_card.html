@@ -1,10 +1,10 @@
-<template name="card">
+<template name="currentCard">
 	<div class="card">
 	  <div class="title">
-	    <a href="#">{{name}}</a>
+	    <a href="#">{{currentTask.name}}</a>
 	  </div>
 	  <div class="description">
-	    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur accusantium adipisci.
+	    {{currentTask.description}}
 	  </div>
 	  <div class="actions-menu">
 
@@ -13,12 +13,9 @@
 	        <i class="fa fa-bars"></i>
 	      </a>
 	      <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-	        <li><a href="#">Start doing it <small>
-	        	<em>(you can drag it)</em>
-	        	</small></a>
+	        <li><a href="#">Done Task</a>
 	        </li>
-	        <li><a href="#">Edit</a></li>
-	        <li><a href="#">Delete</a></li>
+	        <li><a href="#">Sent to Backlog</a></li>
 	      </ul>
 	    </div>
 
