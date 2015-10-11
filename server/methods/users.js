@@ -11,7 +11,7 @@ Meteor.methods({
 		Tasks.update(taskId, {$inc: { pomoCounter: 1}, $set: {status: 'doing'}});
 		var i = 0;
 		//1500
-		while (i < 1000) {
+		/*while (i < 1000) {
 			console.log("seconds "+i)
 			setTimeout(function () {
 				Users.update(userId, { $set: {focusPomo: i} });
@@ -19,7 +19,7 @@ Meteor.methods({
 			}, 1000);
 		};
 		Users.update(userId, { $set: {focusPomo: null} });
-		Meteor.call('startDiffusePomo', userId);
+		Meteor.call('startDiffusePomo', userId);*/
 	},
 	'startDiffusePomo': function (userId) {
 		console.log("starting diffusePomo");

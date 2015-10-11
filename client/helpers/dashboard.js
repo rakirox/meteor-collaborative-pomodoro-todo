@@ -1,5 +1,6 @@
 Meteor.subscribe('projectTasks');
-Template.Hello.helpers({
+
+Template.Dashboard.helpers({
 	tasks: function () {
 		return Tasks.find().fetch();
 	},

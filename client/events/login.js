@@ -1,7 +1,7 @@
 /**
  * Created by rakirox on 10/10/15.
  */
-Template.login.events({
+Template.Login.events({
     'submit form': function(event) {
         event.preventDefault();
         var emailVar = event.target.loginEmail.value;
