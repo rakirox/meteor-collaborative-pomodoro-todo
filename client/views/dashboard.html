@@ -18,7 +18,9 @@
         <h4>DOING</h4>
 
         <div class="doing column">
-          {{> currentCard}}
+          {{#each doingTasks }}
+            {{> currentCard}}
+          {{/each}}
         </div>
 
       </div>
