@@ -15,6 +15,7 @@ Meteor.methods({
 		Tasks.remove({ _id: taskId, ownerId: currentUserId});
 	},
 	'doingTask': function (taskId) {
+		console.log("calling doingTask");
 		var currentUserId = Meteor.currentUserId;
 		Tasks.update({status:'doing'}, {$set:{status:"todo"}}, {multi:true});
 		Tasks.update(taskId, {$set: {status: 'doing'}});
