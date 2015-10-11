@@ -1,1 +1,1 @@
-Users.insert({email:"shuyojl@gmail.com"})
+//Meteor.users.insert({emails:[{address:"shuyojl@gmail.com"}]})
