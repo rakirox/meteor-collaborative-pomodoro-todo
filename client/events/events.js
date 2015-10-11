@@ -1,5 +1,5 @@
 Template.Hello.events({
 	'click .startPomo': function (event) {
-		console.log(this._id);
+		Meteor.call('startFocusPomo', 'WShuyzjQ6D9pAjRCj', 'bJNQtpCX5SmviBXWM');
 	}
 });
