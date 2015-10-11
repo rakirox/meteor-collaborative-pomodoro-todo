@@ -23,9 +23,9 @@ Router.route('/dashboard', function () {
     //this.layout('Layout');
 
     // render the PageOne template
-    if (!Meteor.user()) {
+    //if (!Meteor.user()) {
         this.render('Dashboard');
-    }
+    //}
 });
 
 //Router.route('/MyPomodoro', function () {

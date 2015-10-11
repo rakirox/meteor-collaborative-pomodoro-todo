@@ -1,7 +1,3 @@
-Router.route('/', function () {
-  this.render('');
-});
-
 Template.content.events({
   'click .fixed-action-btn': function() {
     var shareDialogInfo = {

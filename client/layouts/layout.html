@@ -1,15 +1,4 @@
 <template name="Layout">
-    <div class="layout-one">
-        <h1>Layout One</h1>
-
-        {{> navbar}}
-
-        <article>
-            {{> yield}}
-        </article>
-
-        <footer>
-            {{> yield "footer"}}
-        </footer>
-    </div>
+  {{> navbar}}
+  {{> yield}}
 </template>
