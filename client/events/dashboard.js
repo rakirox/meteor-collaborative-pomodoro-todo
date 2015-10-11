@@ -27,8 +27,14 @@ Template.Dashboard.events({
     var rd = ReactiveModal.initDialog(shareDialogInfo);
 
     rd.buttons.save.on('click', function(button){
-      rd.hide();
-      console.log('okok');
+        rd.hide();
+        console.log('okok');
+        var taskName = $(rd.modalTarget).find('[name=taskName]').val();
+        var taskDescription = $(rd.modalTarget).find('[name=taskDescription]').val();
+        var projectId = Session.get('currentProject')._id;
+        var task = {name:taskName,description:taskDescription,subTasks:[],projectId : projectId};
+        console.log(task);
+        Meteor.call('insertTask',task);
     });
 
     rd.show();
