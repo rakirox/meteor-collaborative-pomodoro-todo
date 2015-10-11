@@ -27,6 +27,8 @@ ejson@1.0.7
 email@1.0.7
 es5-shim@4.1.13
 fastclick@1.0.7
+fortawesome:fontawesome@4.4.0
+fourseven:scss@3.3.3_3
 geojson-utils@1.0.4
 hot-code-push@1.0.0
 html-tools@1.0.5
@@ -61,6 +63,7 @@ npm-bcrypt@0.7.8_2
 npm-mongo@1.4.39_1
 observe-sequence@1.0.7
 ordered-dict@1.0.4
+pahans:reactive-modal@1.0.2
 promise@0.5.0
 random@1.0.4
 rate-limit@1.0.0
@@ -68,6 +71,7 @@ reactive-dict@1.1.2
 reactive-var@1.0.6
 reload@1.1.4
 retry@1.0.4
+reywood:bootstrap3-sass@3.3.5_2
 routepolicy@1.0.6
 service-configuration@1.0.5
 session@1.1.1

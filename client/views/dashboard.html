@@ -1,0 +1,57 @@
+<template name="dashboard">
+  <div class="container app-container">
+
+    <div class="columns row text-center">
+      <div class="col-md-3 col-xs-4 column-wrapper">
+
+        <h4>BACKLOG</h4>
+
+        <div class="backlog column">
+          {{> card}}
+          {{> card}}
+          {{> card}}
+          {{> card}}
+          {{> card}}
+          {{> card}}
+          {{> card}}
+          {{> card}}
+          {{> card}}
+          {{> card}}
+          {{> card}}
+          {{> card}}
+          {{> card}}
+        </div>
+
+      </div>
+      <div class="col-md-6 col-xs-4 column-wrapper">
+
+        <h4>DOING</h4>
+
+        <div class="doing column">
+          {{> card}}
+        </div>
+
+      </div>
+      <div class="col-md-3 col-xs-4 column-wrapper">
+
+        <h4>DONE</h4>
+        <div class="done column">
+          {{> card}}
+          {{> card}}
+          {{> card}}
+          {{> card}}
+          {{> card}}
+          {{> card}}
+          {{> card}}
+          {{> card}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fixed-action-btn">
+    <a href="#" title="ADD STORY" class="btn-floating btn-large">
+      <i class="fa fa-plus fa-2x"></i>
+    </a>
+  </div>
+</template>
