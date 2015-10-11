@@ -7,7 +7,7 @@
         <h4>BACKLOG</h4>
 
         <div class="backlog column">
-          {{#each tasks }}
+          {{#each todoTasks }}
             {{> card}}
           {{/each}}
         </div>
@@ -26,7 +26,7 @@
 
         <h4>DONE</h4>
         <div class="done column">
-          {{#each tasks }}
+          {{#each doneTasks }}
             {{> card}}
           {{/each}}
         </div>

@@ -38,8 +38,7 @@ Template.Dashboard.events({
     //Meteor.call('startFocusPomo', 'WShuyzjQ6D9pAjRCj', 'bJNQtpCX5SmviBXWM');
   },
   'click .dropdown-menu a': function (event) {
-    
-    //Session.set('currentTask', Tasks.find({name: this.name}).fetch()[0]);
     Session.set('currentTask', Tasks.find({_id: this._id}).fetch()[0]);
+    Meteor.call('doingTask',this._id);
   }
 });
