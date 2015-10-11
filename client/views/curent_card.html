@@ -1,10 +1,10 @@
 <template name="currentCard">
 	<div class="card">
 	  <div class="title">
-	    <a href="#">{{currentTask.name}}</a>
+	    <a href="#">{{name}}</a>
 	  </div>
 	  <div class="description">
-	    {{currentTask.description}}
+	    {{description}}
 	  </div>
 	  <div class="actions-menu">
 
@@ -13,7 +13,7 @@
 	        <i class="fa fa-bars"></i>
 	      </a>
 	      <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-	        <li><a href="#" class="">Done Task</a>
+	        <li><a href="#" class="doneTaskOption">Done Task</a>
 	        </li>
 	        <li><a href="#">Sent to Backlog</a></li>
 	      </ul>

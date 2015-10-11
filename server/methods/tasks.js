@@ -28,6 +28,7 @@ Meteor.methods({
 	},
 	'doneTask': function (taskId) {
 		var currentUserId = Meteor.currentUserId;
+		console.log("calling done task")
 		Tasks.update(taskId, {$set: {status: 'done'}});
 	}
 });
