@@ -1,4 +1,4 @@
-Template.content.events({
+Template.Dashboard.events({
   'click .fixed-action-btn': function() {
     var shareDialogInfo = {
       template: Template.addTaskDialog,
