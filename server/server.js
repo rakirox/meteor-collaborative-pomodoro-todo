@@ -1,1 +1,1 @@
-Users.insert({email:"shuyojl@gmail.com"})
+

@@ -1,24 +1,4 @@
 <template name="Layout">
-    <div class="layout-one">
-        <h1>Layout One</h1>
-
-        <nav>
-            <ul>
-                <li>
-                    <a href="/">Page One</a>
-                </li>
-                <li>
-                    <a href="/two">Page Two</a>
-                </li>
-            </ul>
-        </nav>
-
-        <article>
-            {{> yield}}
-        </article>
-
-        <footer>
-            {{> yield "footer"}}
-        </footer>
-    </div>
+  {{> navbar}}
+  {{> yield}}
 </template>
