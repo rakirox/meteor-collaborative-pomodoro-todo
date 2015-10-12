@@ -20,7 +20,7 @@ Template.Dashboard.events({
 
       },
       doc: {  // Provide data context for Template.appShareDialog
-        app: "My Application"
+        app: "POMO"
       }
     }
 
@@ -43,9 +43,12 @@ Template.Dashboard.events({
   'click .startPomo': function (event) {
     //Meteor.call('startFocusPomo', 'WShuyzjQ6D9pAjRCj', 'bJNQtpCX5SmviBXWM');
   },
-  'click .dropdown-menu a.doingTaskOption': function (event) {
+  'click .doingTaskOption': function (event) {
     Session.set('secondsTimer', 10);
     initTenSecondsTask(this._id);
+  },
+  'click .todoTaskOption': function (event) {
+    Meteor.call('todoTask', this._id)
   }
 });
 
