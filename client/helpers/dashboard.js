@@ -18,7 +18,7 @@ Template.Dashboard.helpers({
 		return Session.get('currentTask');
 	},
 	currentPomodoro: function () {
-		return Session.get('currentPomodoro');
+		return Meteor.user().profile.currentFocusPomo;
 	},
 	secondsTimer: function () {
 		return Session.get('secondsTimer');

@@ -6,20 +6,9 @@ Meteor.methods({
 		Meteor.call('startFocusPomo', userId, taskId);
 		//Tasks.update(taskId, {$set: {status: 'doing'});
 	},
-	'startFocusPomo': function (userId, taskId) {
-		console.log("starting focusPomo");
-		Tasks.update(taskId, {$inc: { pomoCounter: 1}, $set: {status: 'doing'}});
+	'setFocusPomo': function (taskId, value) {
+		Tasks.update(taskId, {$set: {currentPomo: value}});
 		var i = 0;
-		//1500
-		/*while (i < 1000) {
-			console.log("seconds "+i)
-			setTimeout(function () {
-				Users.update(userId, { $set: {focusPomo: i} });
-				i++;
-			}, 1000);
-		};
-		Users.update(userId, { $set: {focusPomo: null} });
-		Meteor.call('startDiffusePomo', userId);*/
 	},
 	'startDiffusePomo': function (userId) {
 		console.log("starting diffusePomo");

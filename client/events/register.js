@@ -10,10 +10,12 @@ Template.Register.events({
         var projectName = event.target.registerProject.value;
         Accounts.createUser({
             email: emailVar,
-            password: passwordVar
+            password: passwordVar,
+            profile: {
+                currentFocusPomo: 0,
+                currentDiffusePomo:0
+            }
         });
         Meteor.call("insertProject",{name:projectName,description:""});
-
-
     }
 });

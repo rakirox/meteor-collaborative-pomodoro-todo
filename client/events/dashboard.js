@@ -135,26 +135,55 @@ var initTenSecondsTask = function (taskId) {
     doTenSecondsTimer(10, function(){
       Meteor.call('doingTask',taskId);
       rd.hide();
-      //doPomoTimer(taskId,rd);
+      doPomoTimer(taskId);
     });
   }
 };
 
-var doPomoTimer = function (taskId,rd) {
-  doTimer(60, function() {
-    Meteor.call('doingTask',taskId);
-    rd.hide();
+var doPomoTimer = function (taskId) {
+  console.log('calling doPomoTimer')
+  pomoTimer(60, function() {
     doDiffuseTimer(taskId);
   });
 };
-var doDiffuseTimer = function (taskId,rd) {
-  doTimer(10, function() {
-    Meteor.call('doingTask',taskId);
-    rd.hide();
+var doDiffuseTimer = function (taskId) {
+  diffuseTimer(10, function() {
     doPomoTimer();
   });
 };
-doTenSecondsTimer = function (seconds, onComplete) {
+var doTenSecondsTimer = function (seconds, onComplete) {
+  var count = 0,
+      interval = 1000;
+  function instance() {
+    if(count++ == seconds) {
+      window.clearInterval(Session.get('interval'));
+        onComplete();
+    } else {
+        Session.set('secondsTimer', seconds - count);
+    }
+  }
+  intervalId = window.setInterval(instance, interval);
+  Session.set('interval', intervalId);
+};
+var pomoTimer = function (seconds, onComplete) {
+  window.clearInterval(Session.get('interval'));
+  var count = 0,
+      interval = 1000;
+  function instance() {
+    if(count++ == seconds) {
+      window.clearInterval(Session.get('interval'));
+        onComplete();
+    } else {
+      Meteor.users.update(
+        {_id:Meteor.userId() },
+        {$set:{'profile.currentFocusPomo': count - seconds}})
+    }
+  }
+  intervalId = window.setInterval(instance, interval);
+  Session.set('interval', intervalId);
+};
+var diffuseTimer = function (seconds, onComplete) {
+  window.clearInterval(Session.get('interval'));
   var count = 0,
       interval = 1000;
   function instance() {
