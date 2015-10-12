@@ -20,8 +20,17 @@ Router.route('/dashboard', function () {
     if (user = Meteor.user()) {
         if(!Session.get('currentProject')){
             project = Projects.findOne();
-            console.log("miaw");
             Session.set('currentProject', project);
+        }else{
+            currentIdProject = Session.get('currentProject')._id;
+            checkingProject = Projects.findOne({_id:currentIdProject});
+            console.log("dis shit");
+            console.log(currentIdProject);
+            console.log(checkingProject);
+            if(typeof checkingProject === "undefined"){
+                project = Projects.findOne();
+                Session.set('currentProject', project);
+            }
         }
         this.render('Dashboard');
     }else{
@@ -36,7 +45,6 @@ Router.route('/collaborative', function () {
             project = Projects.findOne();
             Session.set('currentProject', project);
         }
-        congole.log(Projects.find(Session.get('currentProject')._id))
         this.render('CollaborativeDashboard');
     }else{
         Router.go('/');
