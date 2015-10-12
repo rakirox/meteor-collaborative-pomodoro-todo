@@ -6,45 +6,50 @@ if (Meteor.isServer) {
 
 
 Router.configure({
-    // the default layout
-    layoutTemplate: 'Layout'
+  // the default layout
+  layoutTemplate: 'Layout'
 });
 
 Router.route('/', function () {
-    // set the layout programmatically
-    //this.layout('Layout');
-
-    if (!Meteor.user()) {
-        this.render('Register');
-    }else{
-        Router.go('/dashboard');
-    }
+  if (!Meteor.user()) {
+    this.layout('Public');
+    this.render('Register');
+  }else{
+    Router.go('/dashboard');
+  }
 });
 
 Router.route('/dashboard', function () {
-    // set the layout programmatically
-    //this.layout('Layout');
-
-    // render the PageOne template
-    if (Meteor.user()) {
-        this.render('Dashboard');
-    }else{
-        Router.go('/');
+  if (user = Meteor.user()) {
+    if(!Session.get('currentProject')){
+      project = Projects.findOne();
+      Session.set('currentProject', project);
     }
+    else {
+      currentIdProject = Session.get('currentProject')._id;
+      checkingProject = Projects.findOne({_id:currentIdProject});
+      console.log("dis shit");
+      console.log(currentIdProject);
+      console.log(checkingProject);
+      if(typeof checkingProject === "undefined"){
+        project = Projects.findOne();
+        Session.set('currentProject', project);
+      }
+    }
+    this.render('Dashboard');
+  } else {
+    Router.go('/');
+  }
 });
 
-//Router.route('/MyPomodoro', function () {
-//    // set the layout based on a reactive session variable
-//    //this.layout(Session.get('layout') || 'LayoutOne');
-//
-//    // render the PageTwo template
-//    this.render('PageTwo');
-//
-//    // render the PageTwoFooter template to the footer region
-//    this.render('PageTwoFooter', {to: 'footer'});
-//});
-
-//Router.use(function () {
-//    if (!this.willBeHandledOnServer())
-//        console.error("No route found for url " + JSON.stringify(this.url) + ".");
-//});
+Router.route('/collaborative', function () {
+  if (user = Meteor.user()) {
+    if(typeof Session.get('currentProject') === "undefined"){
+        project = Projects.findOne();
+        Session.set('currentProject', project);
+    }
+    this.render('CollaborativeDashboard');
+  }else{
+    Router.go('/');
+  }
+});

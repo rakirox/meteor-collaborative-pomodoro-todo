@@ -3,35 +3,47 @@
 
     <div class="columns row text-center">
       <div class="col-md-3 col-xs-4 column-wrapper">
+        <h4><i class="fa fa-tasks"></i> BACKLOG</h4>
 
-        <h4>BACKLOG</h4>
-
-        <div class="backlog column">
+        <section class="backlog column">
           {{#each todoTasks }}
             {{> card}}
           {{/each}}
-        </div>
+        </section>
 
       </div>
       <div class="col-md-6 col-xs-4 column-wrapper">
 
-        <h4>DOING</h4>
+        <h4><i class="fa fa-fire"></i> DOING</h4>
 
-        <div class="doing column">
-          {{> currentCard}}
-        </div>
+        <section class="doing column">
+
+          {{#each doingTasks }}
+            {{> currentCard}}
+          {{/each}}
+
+        </section>
+
+        <section class="pomodoros column">
+          Aqui va el tiempo
+          {{secondsTimer}}
+        </section>
 
       </div>
       <div class="col-md-3 col-xs-4 column-wrapper">
 
-        <h4>DONE</h4>
+        <h4><i class="fa fa-check-square"></i> DONE</h4>
         <div class="done column">
+
           {{#each doneTasks }}
             {{> card}}
           {{/each}}
+
         </div>
+
       </div>
     </div>
+
   </div>
 
   <div class="fixed-action-btn">
@@ -39,4 +51,5 @@
       <i class="fa fa-plus fa-2x"></i>
     </a>
   </div>
+
 </template>

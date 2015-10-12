@@ -1,10 +1,14 @@
 <template name="Login">
-    <h1> Login your shit here biatch</h1>
-    <form id="login">
-        <label>email</label>
-        <input type="email" name="loginEmail">
-        <label>password</label>
-        <input type="password" name="loginPassword">
-        <input type="submit" value="Login">
-    </form>
+  <h2>Already a member? Sign in</h2>
+  <form id="login">
+    <div class="form-group">
+      <label>email</label>
+      <input type="email" class="form-control" name="loginEmail">
+    </div>
+    <div class="form-group">
+      <label>password</label>
+      <input type="password" class="form-control" name="loginPassword">
+    </div>
+    <button type="submit" class="btn btn-primary btn-large">Login</button>
+  </form>
 </template>

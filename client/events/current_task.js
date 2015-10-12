@@ -6,7 +6,10 @@ Template.currentCard.helpers({
 
 Template.Dashboard.events({
   'click .dropdown-menu a.doneTaskOption': function (event) {
-  	console.log(this)
     Meteor.call('doneTask',this._id);
+  },
+  'click .dropdown-menu a.todoTaskOption': function (event) {
+  	Session.set('secondsTimer', 0);
+  	Meteor.call('todoTask',this._id);
   }
 });

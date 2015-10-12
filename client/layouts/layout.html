@@ -2,3 +2,18 @@
   {{> navbar}}
   {{> yield}}
 </template>
+
+<template name="Public">
+  <div class="jumbotron">
+    <div class="container text-center">
+      <div class="start"><small>START BEING PRODUCTIVE WITH</small></div>
+      <h1 class="">POMO</h1>
+    </div>
+  </div>
+  <div class="container">
+    {{> yield}}
+  </div>
+  <style>
+    html, body { overflow: auto; }
+  </style>
+</template>

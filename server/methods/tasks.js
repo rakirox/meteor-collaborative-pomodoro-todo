@@ -7,7 +7,8 @@ Meteor.methods({
 			subTasks: task.subTasks,
 			projectId: task.projectId,
 			ownerId: currentUserId,
-			userId: currentUserId
+			userId: '',
+            status: 'todo'
 		});
 	},
 	'deleteTask': function (taskId) {
@@ -15,11 +16,9 @@ Meteor.methods({
 		Tasks.remove({ _id: taskId, ownerId: currentUserId});
 	},
 	'doingTask': function (taskId) {
+		console.log("calling doingTask");
 		var currentUserId = Meteor.currentUserId;
-		doingTasks = Tasks.find({status:'doing'});
-		doingTasks.forEach( function (task) {
-			Tasks.update(taskId, {$set: {status: 'doing'}});	
-		});
+		Tasks.update({status:'doing'}, {$set:{status:"todo"}}, {multi:true});
 		Tasks.update(taskId, {$set: {status: 'doing'}});
 	},
 	'todoTask': function (taskId) {
