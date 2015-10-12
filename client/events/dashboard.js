@@ -61,6 +61,30 @@ Template.Dashboard.events({
     modal.show();
   },
 
+  'click .deleteTask': function (event) {
+    var shareDialogInfo = {
+      template: Template.deleteTaskDialog,
+      title: "Are you sure you want to delete:",
+      removeOnHide: true,
+      buttons: {
+        "cancel": { class: 'btn-danger', label: 'Cancel' },
+        "delete": { closeModalOnClick: false, class: 'btn-info', label: 'Delete this!' }
+      },
+      doc: { task: this }
+    }
+
+    var modal = ReactiveModal.initDialog(shareDialogInfo);
+
+    modal.buttons.delete.on('click', function(button){
+      var taskId = $(modal.modalTarget).find('[name=taskId]').val();
+      console.log(taskId);
+      Meteor.call('deleteTask', taskId);
+      modal.hide();
+    });
+
+    modal.show();
+  },
+
   'click .startPomo': function (event) {
     //Meteor.call('startFocusPomo', 'WShuyzjQ6D9pAjRCj', 'bJNQtpCX5SmviBXWM');
   },
