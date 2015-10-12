@@ -1,12 +1,4 @@
-if (Meteor.isServer) {
-  Meteor.startup(function () {
-    console.log("running from server")
-  });
-}
-
-
 Router.configure({
-  // the default layout
   layoutTemplate: 'Layout'
 });
 
@@ -20,26 +12,21 @@ Router.route('/', function () {
 });
 
 Router.route('/dashboard', function () {
-  if (user = Meteor.user()) {
-    if(!Session.get('currentProject')){
+  if (!Meteor.user()) Router.go('/');
+
+  if(!Session.get('currentProject')){
+    Session.set('currentProject', Projects.findOne());
+  }
+  else {
+    checkingProject = Session.get('currentProject');
+    if(typeof checkingProject === "undefined"){
       project = Projects.findOne();
       Session.set('currentProject', project);
     }
-    else {
-      currentIdProject = Session.get('currentProject')._id;
-      checkingProject = Projects.findOne({_id:currentIdProject});
-      console.log("dis shit");
-      console.log(currentIdProject);
-      console.log(checkingProject);
-      if(typeof checkingProject === "undefined"){
-        project = Projects.findOne();
-        Session.set('currentProject', project);
-      }
-    }
-    this.render('Dashboard');
-  } else {
-    Router.go('/');
   }
+
+  this.render('Dashboard');
+
 });
 
 Router.route('/collaborative', function () {
