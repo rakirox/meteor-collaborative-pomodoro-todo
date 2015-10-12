@@ -2,8 +2,15 @@
     <div class="container app-container">
         <div class="columns row text-center">
             <h4>BACKLOG</h4>
-            {{#each Tasks }}
-                {{> card}}
+            {{#each collaborators }}
+                {{#with emails.[0]}}
+                    {{address}}
+                {{/with}}
+                <div>
+                    {{#each tasks }}
+                        {{> card}}
+                    {{/each}}
+                </div>
             {{/each}}
         </div>
     </div>

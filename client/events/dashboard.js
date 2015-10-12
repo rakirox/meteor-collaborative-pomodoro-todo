@@ -96,6 +96,9 @@ Template.Dashboard.events({
     window.clearInterval(Session.get('interval'));
     Session.set('secondsTimer', null);
     Meteor.call('todoTask', this._id);
+  },
+  'click .doneTaskOption':function (event) {
+    Meteor.call('doneTask',this._id);
   }
 });
 

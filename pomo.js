@@ -30,13 +30,10 @@ Router.route('/dashboard', function () {
 });
 
 Router.route('/collaborative', function () {
-  if (user = Meteor.user()) {
+   // if (!Meteor.user()) Router.go('/');
     if(typeof Session.get('currentProject') === "undefined"){
         project = Projects.findOne();
         Session.set('currentProject', project);
     }
     this.render('CollaborativeDashboard');
-  }else{
-    Router.go('/');
-  }
 });
