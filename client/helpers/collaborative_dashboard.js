@@ -7,7 +7,7 @@ Template.CollaborativeDashboard.helpers({
         var collaborators = Meteor.users.find({_id: {$in : currentProject.collaborators}}).fetch();
         collaborators.forEach(
             function(collaborator){
-                var tasks = Tasks.find({status:"doing",userId:collaborator._id}).fetch();
+                var tasks = Tasks.find({status:"doing",userId:collaborator._id, projectId: currentProject._id}).fetch();
                 collaborator.tasks = tasks;
             }
         );
