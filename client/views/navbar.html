@@ -1,78 +1,95 @@
 <template name="navbar">
-	<nav class="navbar navbar-pomo">
-		<div class="container-fluid">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<!-- <a class="navbar-brand" href="#">POMO</a> -->
-			</div>
+  <nav class="navbar navbar-pomo">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <!-- <a class="navbar-brand" href="#">POMO</a> -->
+      </div>
 
-			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                {{#if currentUser}}
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        {{#if currentUser}}
 
-                <ul class="nav navbar-nav">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle"
-                           data-toggle="dropdown"
-                           role="button"
-                           aria-haspopup="true"
-                           aria-expanded="false">
-                            <small><em>{{currentPage}}</em></small> <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="#" class="panelCol">Panel Colaborativo</a>
-                            </li>
-                            <li>
-                                <a href="#" class="panelMi">Mi panel</a>
-                            </li>
-                        </ul>
-                    </li>
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                {{currentProject.name}}
+                <small><em>({{currentProject.description}})</em></small>
+                <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                {{#each userProjects}}
+                  {{> singleProject project=this }}
+                {{/each}}
+                <li role="separator" class="divider"></li>
+                <li>
+                  <a href="{{pathFor route='projects.new'}}">New project</a>
+                </li>
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle"
+                 data-toggle="dropdown"
+                 role="button"
+                 aria-haspopup="true"
+                 aria-expanded="false">
+                  <small><em>{{currentPage}}</em></small> <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="#" class="panelCol">Panel Colaborativo</a></li>
+                <li><a href="#" class="panelMi">Mi panel</a></li>
+              </ul>
+            </li>
+
+          </ul>
+
+          <ul class="nav navbar-nav navbar-right">
+
+            {{#if currentProject}}
+              <li>
+                <a href="#" class="dropdown-toggle"
+                   data-toggle="dropdown"
+                   role="button"
+                   aria-haspopup="true"
+                   aria-expanded="false">
+                    <i class="fa fa-cog"></i> <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a href="/projects/{{currentProject._id}}/edit">Settings</a></li>
+                  <li><a href="#" class="addUsers">Invite users</a></li>
                 </ul>
-				<ul class="nav navbar-nav">
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle"
-												data-toggle="dropdown"
-												role="button"
-												aria-haspopup="true"
-												aria-expanded="false">
-							{{currentProject.name}} <small><em>({{currentProject.description}})</em></small> <span class="caret"></span>
-						</a>
-						<ul class="dropdown-menu">
-                            {{#each userProjects}}
-                                {{> singleProject project=this }}
-                            {{/each}}
-						</ul>
-					</li>
-				</ul>
 
-				<ul class="nav navbar-nav navbar-right">
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle"
-												data-toggle="dropdown"
-												role="button"
-												aria-haspopup="true"
-												aria-expanded="false">
-							{{currentEmailUser}} <span class="caret"></span>
-						</a>
-						<ul class="dropdown-menu">
-							<li><a href="#">Edit profile</a></li>
-							<li role="separator" class="divider"></li>
-							    <li><a href="#" id="logOut">Sign out</a></li>
-						</ul>
-					</li>
-				</ul>
-                {{/if}}
-			</div>
-		</div>
-	</nav>
+              </li>
+            {{/if}}
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle"
+                          data-toggle="dropdown"
+                          role="button"
+                          aria-haspopup="true"
+                          aria-expanded="false">
+                {{currentEmailUser}} <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Edit profile</a></li>
+                <li role="separator" class="divider"></li>
+                    <li><a href="#" id="logOut">Sign out</a></li>
+              </ul>
+            </li>
+          </ul>
+        {{/if}}<!-- End of currentUser condition -->
+      </div>
+    </div>
+  </nav>
 </template>
+
 <template name="singleProject">
-    <li>
-        <a href="#">{{project.name}} <small><em>({{project.description}})</em></small></a>
-    </li>
+  <li>
+    <a href="#">{{project.name}}</a>
+  </li>
 </template>
