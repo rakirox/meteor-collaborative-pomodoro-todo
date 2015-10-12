@@ -2,13 +2,17 @@ Meteor.subscribe('projectTasks', Session.get('currentProject')._id);
 
 Template.Dashboard.helpers({
 	todoTasks: function () {
-		return Tasks.find({status:"todo"}).fetch();
+        var currentProject = Session.get("currentProject");
+		return Tasks.find({status:"todo", projectId: currentProject._id}).fetch();
 	},
 	doingTasks: function () {
-		return Tasks.find({status:"doing"}).fetch();
+        var currentProject = Session.get("currentProject");
+        var userId = Meteor.user()._id;
+		return Tasks.find({status:"doing", projectId: currentProject._id, userId: userId }).fetch();
 	},
 	doneTasks: function () {
-		return Tasks.find({status:"done"}).fetch();
+        var currentProject = Session.get("currentProject");
+		return Tasks.find({status:"done", projectId: currentProject._id}).fetch();
 	},
 	currentTask: function () {
 		return Session.get('currentTask');

@@ -41,6 +41,20 @@ Router.route('/dashboard', function () {
     }
 });
 
+
+Router.route('/collaborative', function () {
+    if (user = Meteor.user()) {
+        if(typeof Session.get('currentProject') === "undefined"){
+            project = Projects.findOne();
+            Session.set('currentProject', project);
+        }
+        congole.log(Projects.find(Session.get('currentProject')._id))
+        this.render('CollaborativeDashboard');
+    }else{
+        Router.go('/');
+    }
+});
+
 //Router.route('/MyPomodoro', function () {
 //    // set the layout based on a reactive session variable
 //    //this.layout(Session.get('layout') || 'LayoutOne');
