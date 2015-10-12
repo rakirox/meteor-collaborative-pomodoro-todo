@@ -27,10 +27,18 @@ Template.Dashboard.events({
     var rd = ReactiveModal.initDialog(shareDialogInfo);
 
     rd.buttons.save.on('click', function(button){
-      rd.hide();
+        rd.hide();
+        console.log('okok');
+        var taskName = $(rd.modalTarget).find('[name=taskName]').val();
+        var taskDescription = $(rd.modalTarget).find('[name=taskDescription]').val();
+        var projectId = Session.get('currentProject')._id;
+        var task = {name:taskName,description:taskDescription,subTasks:[],projectId : projectId};
+        console.log(task);
+        Meteor.call('insertTask',task);
     });
 
     rd.show();
+    console.log("derp");
   },
   'click .startPomo': function (event) {
     //Meteor.call('startFocusPomo', 'WShuyzjQ6D9pAjRCj', 'bJNQtpCX5SmviBXWM');
