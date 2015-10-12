@@ -3,5 +3,5 @@ Meteor.publish("tasks", function (projectId, state, userId) {
 });
 
 Meteor.publish('projectTasks', function (projectId) {
-	return Tasks.find();
+	return Tasks.find({projectId: projectId});
 });

@@ -78,18 +78,18 @@ var initTenSecondsTask = function (taskId) {
   doTimer(10, function(){
     Meteor.call('doingTask',taskId);
     rd.hide();
-    doPomoTimer();
+    doPomoTimer(taskId,rd);
   });
 };
 
-var doPomoTimer = function () {
+var doPomoTimer = function (taskId,rd) {
   doTimer(60, function() {
     Meteor.call('doingTask',taskId);
     rd.hide();
-    doDiffuseTimer();
+    doDiffuseTimer(taskId);
   });
 };
-var doDiffuseTimer = function () {
+var doDiffuseTimer = function (taskId,rd) {
   doTimer(10, function() {
     Meteor.call('doingTask',taskId);
     rd.hide();

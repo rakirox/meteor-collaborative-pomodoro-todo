@@ -1,4 +1,4 @@
-Meteor.subscribe('projectTasks');
+Meteor.subscribe('projectTasks', Session.get('currentProject')._id);
 
 Template.Dashboard.helpers({
 	todoTasks: function () {
