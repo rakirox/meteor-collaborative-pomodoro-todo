@@ -16,6 +16,13 @@ Template.navbar.helpers({
             Session.set('currentProject', project);
         }
         return Session.get('currentProject');
+    },
+    currentPage: function(){
+        if(Router.current().route.getName() === "collaborative"){
+            return "Panel Colaborativo";
+        } else {
+            return "Mi Panel"
+        }
     }
 });
 

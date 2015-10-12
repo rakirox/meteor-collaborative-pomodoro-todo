@@ -13,6 +13,7 @@
 
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         {{#if currentUser}}
+
           <ul class="nav navbar-nav">
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -30,14 +31,31 @@
                 </li>
               </ul>
             </li>
-            <li>
-              {{#if currentProject}}
-                <a href="/projects/{{currentProject._id}}/edit"><i class="fa fa-cog"></i> Project settings</a>
-              {{/if}}
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle"
+                 data-toggle="dropdown"
+                 role="button"
+                 aria-haspopup="true"
+                 aria-expanded="false">
+                  <small><em>{{currentPage}}</em></small> <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="#" class="panelCol">Panel Colaborativo</a></li>
+                <li><a href="#" class="panelMi">Mi panel</a></li>
+              </ul>
             </li>
+
           </ul>
 
           <ul class="nav navbar-nav navbar-right">
+
+            {{#if currentProject}}
+              <li>
+                <a href="/projects/{{currentProject._id}}/edit"><i class="fa fa-cog"></i></a>
+              </li>
+            {{/if}}
+
             <li class="dropdown">
               <a href="#" class="dropdown-toggle"
                           data-toggle="dropdown"

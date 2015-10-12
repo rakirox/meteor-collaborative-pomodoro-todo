@@ -4,9 +4,17 @@
 Template.navbar.events({
     'click #logOut': function(event) {
         event.preventDefault();
-        console.log("#logOut.");
         Accounts.logout();
 
+
+    },
+    'click .panelCol': function(event) {
+        event.preventDefault();
+        Router.go('/collaborative');
+    },
+    'click .panelMi': function(event) {
+        event.preventDefault();
+        Router.go('/dashboard');
 
     }
 });
