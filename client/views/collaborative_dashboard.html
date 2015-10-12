@@ -1,0 +1,10 @@
+<template name="CollaborativeDashboard">
+    <div class="container app-container">
+        <div class="columns row text-center">
+            <h4>BACKLOG</h4>
+            {{#each todoTasks }}
+                {{> card}}
+            {{/each}}
+        </div>
+    </div>
+</template>

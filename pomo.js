@@ -11,8 +11,6 @@ Router.configure({
 });
 
 Router.route('/', function () {
-  //this.layout('Layout');
-
   if (!Meteor.user()) {
     this.layout('Public');
     this.render('Register');
@@ -20,6 +18,7 @@ Router.route('/', function () {
     Router.go('/dashboard');
   }
 });
+
 Router.route('/dashboard', function () {
   //this.layout('Layout');
 
@@ -27,7 +26,6 @@ Router.route('/dashboard', function () {
     if(!Session.get('currentProject')){
       project = Projects.findOne();
       console.log("miaw");
-      console.log(project);
       Session.set('currentProject', project);
     }
     this.render('Dashboard');
