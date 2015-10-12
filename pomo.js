@@ -6,14 +6,10 @@ if (Meteor.isServer) {
 
 
 Router.configure({
-    // the default layout
     layoutTemplate: 'Layout'
 });
 
 Router.route('/', function () {
-    // set the layout programmatically
-    //this.layout('Layout');
-
     if (!Meteor.user()) {
         this.render('Register');
     }else{
@@ -21,38 +17,16 @@ Router.route('/', function () {
     }
 });
 Router.route('/dashboard', function () {
-
-
-    // set the layout programmatically
-    //this.layout('Layout');
-
-    // render the PageOne template
-
     if (user = Meteor.user()) {
         if(!Session.get('currentProject')){
             project = Projects.findOne();
             console.log("miaw");
-            console.log(project);
             Session.set('currentProject', project);
+            console.log(Session.get('currentProject')._id);
+            Meteor.subscribe('projectTasks', Session.get('currentProject')._id);
         }
         this.render('Dashboard');
-    }else{
+    } else{
         Router.go('/');
     }
 });
-
-//Router.route('/MyPomodoro', function () {
-//    // set the layout based on a reactive session variable
-//    //this.layout(Session.get('layout') || 'LayoutOne');
-//
-//    // render the PageTwo template
-//    this.render('PageTwo');
-//
-//    // render the PageTwoFooter template to the footer region
-//    this.render('PageTwoFooter', {to: 'footer'});
-//});
-
-//Router.use(function () {
-//    if (!this.willBeHandledOnServer())
-//        console.error("No route found for url " + JSON.stringify(this.url) + ".");
-//});
