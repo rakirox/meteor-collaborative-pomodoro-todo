@@ -22,11 +22,23 @@ Router.route('/dashboard', function () {
             project = Projects.findOne();
             console.log("miaw");
             Session.set('currentProject', project);
-            console.log(Session.get('currentProject')._id);
-            Meteor.subscribe('projectTasks', Session.get('currentProject')._id);
         }
         this.render('Dashboard');
-    } else{
+    }else{
+        Router.go('/');
+    }
+});
+
+
+Router.route('/collaborative', function () {
+    if (user = Meteor.user()) {
+        if(typeof Session.get('currentProject') === "undefined"){
+            project = Projects.findOne();
+            Session.set('currentProject', project);
+        }
+        congole.log(Projects.find(Session.get('currentProject')._id))
+        this.render('CollaborativeDashboard');
+    }else{
         Router.go('/');
     }
 });

@@ -7,7 +7,7 @@ Template.Register.events({
         console.log("register submitted.");
         var emailVar = event.target.registerEmail.value;
         var passwordVar = event.target.registerPassword.value;
-        var projectName = event.target.registerPassword.value;
+        var projectName = event.target.registerProject.value;
         Accounts.createUser({
             email: emailVar,
             password: passwordVar
