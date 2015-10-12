@@ -77,38 +77,43 @@ Template.Dashboard.events({
     Meteor.call('doneTask',this._id);
   }
 });
-
+var currentTask = function () {
+  var currentUserId = Meteor.userId();
+  return Tasks.find({status:'doing', userId: currentUserId}).fetch();
+};
 var initTenSecondsTask = function (taskId) {
-  var shareDialogInfo = {
-    template: Template.tenSecondsDialog,
-    title: "Ten seconds to continue",
-    modalDialogClass: "add-modal-dialog",
-    modalBodyClass: "add-modal-body",
-    modalFooterClass: "add-modal-footer",
-    removeOnHide: true,
-    buttons: {
-      "cancel": {
-        closeModalOnClick: false,
-        class: 'btn-danger',
-        label: 'Cancel'
+  if(currentTask().length < 1 ) {
+    var shareDialogInfo = {
+      template: Template.tenSecondsDialog,
+      title: "Ten seconds to continue",
+      modalDialogClass: "add-modal-dialog",
+      modalBodyClass: "add-modal-body",
+      modalFooterClass: "add-modal-footer",
+      removeOnHide: true,
+      buttons: {
+        "cancel": {
+          closeModalOnClick: false,
+          class: 'btn-danger',
+          label: 'Cancel'
+        }
       }
-    }
-  };
+    };
 
-  var rd = ReactiveModal.initDialog(shareDialogInfo);
+    var rd = ReactiveModal.initDialog(shareDialogInfo);
 
-  rd.buttons.cancel.on('click', function(button){
-    window.clearInterval(Session.get('interval'));
-    rd.hide();
-  });
+    rd.buttons.cancel.on('click', function(button){
+      window.clearInterval(Session.get('interval'));
+      rd.hide();
+    });
 
-  rd.show();
+    rd.show();
 
-  doTimer(10, function(){
-    Meteor.call('doingTask',taskId);
-    rd.hide();
-    doPomoTimer(taskId,rd);
-  });
+    doTenSecondsTimer(10, function(){
+      Meteor.call('doingTask',taskId);
+      rd.hide();
+      //doPomoTimer(taskId,rd);
+    });
+  }
 };
 
 var doPomoTimer = function (taskId,rd) {
@@ -125,7 +130,7 @@ var doDiffuseTimer = function (taskId,rd) {
     doPomoTimer();
   });
 };
-doTimer = function (seconds, onComplete) {
+doTenSecondsTimer = function (seconds, onComplete) {
   var count = 0,
       interval = 1000;
   function instance() {

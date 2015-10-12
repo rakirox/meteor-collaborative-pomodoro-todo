@@ -21,9 +21,10 @@ Meteor.methods({
   },
   'doingTask': function (taskId) {
     console.log("calling doingTask");
-    var currentUserId = Meteor.currentUserId;
-    Tasks.update({status:'doing'}, {$set:{status:"todo", userId: currentUserId}}, {multi:true});
-    Tasks.update(taskId, {$set: {status: 'doing'}});
+    var currentUserId = Meteor.userId();
+    console.log(currentUserId)
+    Tasks.update({status:'doing'}, {$set:{status:"todo"}}, {multi:true});
+    Tasks.update(taskId, {$set: {status: 'doing', userId: currentUserId}});
   },
   'todoTask': function (taskId) {
     console.log("dsdds");
@@ -32,5 +33,6 @@ Meteor.methods({
   'doneTask': function (taskId) {
     var currentUserId = Meteor.currentUserId;
     Tasks.update(taskId, {$set: {status: 'done'}});
-  }
+  },
+  
 });

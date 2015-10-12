@@ -23,4 +23,8 @@ Template.Dashboard.helpers({
 	secondsTimer: function () {
 		return Session.get('secondsTimer');
 	},
+	'currentTask': function () {
+    var currentUserId = Meteor.userId();
+    return Tasks.find({status:'doing', userId: currentUserId}).fetch();
+  }
 });
