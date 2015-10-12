@@ -1,0 +1,135 @@
+.card {
+  border: 1px solid rgba(149, 165, 166, 0.4);
+  position: relative;
+  border-radius: 4px;
+  background-color: #fff;
+  padding: 10px;
+  margin-bottom: 10px;
+  text-align: left;
+
+  .title {
+    font-weight: bold;
+    padding: 0;
+    margin: 0;
+    font-size: 13px;
+    margin-right: 12px;
+
+    a {
+      color: rgba(44, 62, 80, 1);
+
+      .fa-bars {
+        font-size: 10px;
+      }
+    }
+  }
+
+  .description {
+    margin-top: 7px;
+    font-size: 11px;
+    margin-right: 12px;
+  }
+
+  .actions-menu {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    z-index: 10;
+    width: 0px;
+    background-color: rgba(149, 165, 166, 0.4);
+    height: calc(100% - 4px);
+    -webkit-transition: width 0.2s;
+    transition: width 0.2s;
+    transition-timing-function: ease-in-out;
+
+    a {
+      color: rgba(44, 62, 80, 1);
+
+      .fa-bars {
+        font-size: 10px;
+      }
+
+      &.trigger {
+        display: block;
+        padding: 0;
+        text-align: center;
+      }
+    }
+
+    .options {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: none;
+
+      a {
+        padding: 0;
+        text-align: center;
+        display: block;
+        font-size: 12px;
+        padding: 3px 0;
+
+        &.destroy {
+          color: rgba(231, 76, 60, 1);
+        }
+      }
+    }
+  }
+
+  .border-progress-bar {
+    position: absolute;
+    bottom: 0px;
+    z-index: 10;
+    height: 4px;
+    background-color: rgba(149, 165, 166, 0.4);
+    content: " ";
+    left: 0px;
+    width: 100%;
+    border-radius: 0 0 3px 3px;
+
+    .progress-value {
+      width: 0;
+      display: block;
+      margin: 0;
+      padding: 0;
+      content: "\A";
+      height: 4px;
+      position: relative;
+      background-color: rgba(26, 188, 156, 1);
+    }
+  }
+
+  &.finished {
+    .progress-value {
+      background-color: rgba(192, 57, 43, 1);
+    }
+  }
+
+  &:hover {
+    .actions-menu {
+      width: 20px;
+
+      .options {
+        display: block;
+      }
+    }
+  }
+}
+
+.doing {
+  .card {
+    height: 96%;
+
+    &.pomodoro {
+      min-height: 100px;
+      height: 100px;
+    }
+
+    .title {
+      font-size: 18px;
+    }
+
+    .description {
+      font-size: 15px;
+    }
+  }
+}

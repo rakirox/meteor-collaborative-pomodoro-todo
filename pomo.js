@@ -6,39 +6,34 @@ if (Meteor.isServer) {
 
 
 Router.configure({
-    // the default layout
-    layoutTemplate: 'Layout'
+  // the default layout
+  layoutTemplate: 'Layout'
 });
 
 Router.route('/', function () {
-    // set the layout programmatically
-    //this.layout('Layout');
+  //this.layout('Layout');
 
-    if (!Meteor.user()) {
-        this.render('Register');
-    }else{
-        Router.go('/dashboard');
-    }
+  if (!Meteor.user()) {
+    this.layout('Public');
+    this.render('Register');
+  }else{
+    Router.go('/dashboard');
+  }
 });
 Router.route('/dashboard', function () {
+  //this.layout('Layout');
 
-
-    // set the layout programmatically
-    //this.layout('Layout');
-
-    // render the PageOne template
-
-    if (user = Meteor.user()) {
-        if(!Session.get('currentProject')){
-            project = Projects.findOne();
-            console.log("miaw");
-            console.log(project);
-            Session.set('currentProject', project);
-        }
-        this.render('Dashboard');
-    }else{
-        Router.go('/');
+  if (user = Meteor.user()) {
+    if(!Session.get('currentProject')){
+      project = Projects.findOne();
+      console.log("miaw");
+      console.log(project);
+      Session.set('currentProject', project);
     }
+    this.render('Dashboard');
+  } else {
+    Router.go('/');
+  }
 });
 
 //Router.route('/MyPomodoro', function () {
