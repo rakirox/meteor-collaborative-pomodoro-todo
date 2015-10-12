@@ -4,7 +4,7 @@ Template.currentCard.helpers({
 	}
 });
 
-Template.Dashboard.events({
+Template.currentCard.events({
   'click .dropdown-menu a.doneTaskOption': function (event) {
     Meteor.call('doneTask',this._id);
   },
