@@ -20,13 +20,21 @@ Router.route('/', function () {
 });
 
 Router.route('/dashboard', function () {
-  //this.layout('Layout');
-
   if (user = Meteor.user()) {
     if(!Session.get('currentProject')){
       project = Projects.findOne();
-      console.log("miaw");
       Session.set('currentProject', project);
+    }
+    else {
+      currentIdProject = Session.get('currentProject')._id;
+      checkingProject = Projects.findOne({_id:currentIdProject});
+      console.log("dis shit");
+      console.log(currentIdProject);
+      console.log(checkingProject);
+      if(typeof checkingProject === "undefined"){
+        project = Projects.findOne();
+        Session.set('currentProject', project);
+      }
     }
     this.render('Dashboard');
   } else {
@@ -34,18 +42,14 @@ Router.route('/dashboard', function () {
   }
 });
 
-//Router.route('/MyPomodoro', function () {
-//    // set the layout based on a reactive session variable
-//    //this.layout(Session.get('layout') || 'LayoutOne');
-//
-//    // render the PageTwo template
-//    this.render('PageTwo');
-//
-//    // render the PageTwoFooter template to the footer region
-//    this.render('PageTwoFooter', {to: 'footer'});
-//});
-
-//Router.use(function () {
-//    if (!this.willBeHandledOnServer())
-//        console.error("No route found for url " + JSON.stringify(this.url) + ".");
-//});
+Router.route('/collaborative', function () {
+  if (user = Meteor.user()) {
+    if(typeof Session.get('currentProject') === "undefined"){
+        project = Projects.findOne();
+        Session.set('currentProject', project);
+    }
+    this.render('CollaborativeDashboard');
+  }else{
+    Router.go('/');
+  }
+});
