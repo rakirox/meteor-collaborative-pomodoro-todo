@@ -7,7 +7,8 @@ Meteor.methods({
 			subTasks: task.subTasks,
 			projectId: task.projectId,
 			ownerId: currentUserId,
-			userId: currentUserId
+			userId: currentUserId,
+            status: 'todo'
 		});
 	},
 	'deleteTask': function (taskId) {

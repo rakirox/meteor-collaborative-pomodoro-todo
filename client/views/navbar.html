@@ -20,15 +20,12 @@
 												role="button"
 												aria-haspopup="true"
 												aria-expanded="false">
-							LUPAC <small><em>(subscription based ecommerce)</em></small> <span class="caret"></span>
+							{{currentProject.name}} <small><em>({{currentProject.description}})</em></small> <span class="caret"></span>
 						</a>
 						<ul class="dropdown-menu">
-							<li>
-								<a href="#">LUPAC <small><em>(subscription based ecommerce)</em></small></a>
-							</li>
-							<li>
-								<a href="#">FUNDARE <small><em>(Realstate investments platform)</em></small></a>
-							</li>
+                            {{#each userProjects}}
+                                {{> singleProject project=this }}
+                            {{/each}}
 						</ul>
 					</li>
 
@@ -55,4 +52,9 @@
 			</div>
 		</div>
 	</nav>
+</template>
+<template name="singleProject">
+    <li>
+        <a href="#">{{project.name}} <small><em>({{project.description}})</em></small></a>
+    </li>
 </template>

@@ -8,6 +8,11 @@ Meteor.publish('userTasks', function (projectId) {
 });
 
 Meteor.publish('userProjects', function () {
-	var currentUserId = this.userId;
-	return Projects.find({createdBy: currentUserId});
+    project = Projects.find({
+        $or: [
+            { userId: this.userId },
+            { collaborators : {$in : [this.userId]} }
+        ]
+    });
+    return project;
 });

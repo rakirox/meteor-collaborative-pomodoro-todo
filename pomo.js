@@ -20,13 +20,21 @@ Router.route('/', function () {
         Router.go('/dashboard');
     }
 });
-
 Router.route('/dashboard', function () {
+
+
     // set the layout programmatically
     //this.layout('Layout');
 
     // render the PageOne template
-    if (Meteor.user()) {
+
+    if (user = Meteor.user()) {
+        if(!Session.get('currentProject')){
+            project = Projects.findOne();
+            console.log("miaw");
+            console.log(project);
+            Session.set('currentProject', project);
+        }
         this.render('Dashboard');
     }else{
         Router.go('/');
