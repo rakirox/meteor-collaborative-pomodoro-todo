@@ -2,7 +2,6 @@
 Template.Dashboard.helpers({
 	todoTasks: function () {
         var currentProject = Session.get("currentProject");
-        console.log(currentProject);
 		return Tasks.find({status:"todo", projectId: currentProject._id}).fetch();
 	},
 	doingTasks: function () {
