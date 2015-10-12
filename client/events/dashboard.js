@@ -2,44 +2,65 @@ Template.Dashboard.events({
   'click .fixed-action-btn': function() {
     var shareDialogInfo = {
       template: Template.addTaskDialog,
-      title: "Add a task",
-      modalDialogClass: "add-modal-dialog", //optional
-      modalBodyClass: "add-modal-body", //optional
-      modalFooterClass: "add-modal-footer",//optional
-      removeOnHide: true, //optional. If this is true, modal will be removed from DOM upon hiding
+      title: "Add a story",
+      removeOnHide: true,
       buttons: {
-        "cancel": {
-          class: 'btn-danger',
-          label: 'Cancel'
-        },
-        "save": {
-          closeModalOnClick: false, // if this is false, dialog doesnt close automatically on click
-          class: 'btn-info',
-          label: 'save'
-        }
-
+        "cancel": { class: 'btn-danger', label: 'Cancel' },
+        "save": { closeModalOnClick: false, class: 'btn-info', label: 'save'}
       },
-      doc: {  // Provide data context for Template.appShareDialog
-        app: "POMO"
+      doc: {
+        task: {}
       }
     }
 
-    var rd = ReactiveModal.initDialog(shareDialogInfo);
+    var modal = ReactiveModal.initDialog(shareDialogInfo);
 
-    rd.buttons.save.on('click', function(button){
-        rd.hide();
-        console.log('okok');
-        var taskName = $(rd.modalTarget).find('[name=taskName]').val();
-        var taskDescription = $(rd.modalTarget).find('[name=taskDescription]').val();
+    modal.buttons.save.on('click', function(button){
+        modal.hide();
+        var taskName = $(modal.modalTarget).find('[name=taskName]').val();
+        var taskDescription = $(modal.modalTarget).find('[name=taskDescription]').val();
         var projectId = Session.get('currentProject')._id;
         var task = {name:taskName,description:taskDescription,subTasks:[],projectId : projectId};
         console.log(task);
         Meteor.call('insertTask',task);
     });
 
-    rd.show();
+    modal.show();
     console.log("derp");
   },
+  'click .editTask': function() {
+    var shareDialogInfo = {
+      template: Template.addTaskDialog,
+      title: "Edit "+this.name,
+      removeOnHide: true,
+      buttons: {
+        "cancel": { class: 'btn-danger', label: 'Cancel' },
+        "save": { closeModalOnClick: false, class: 'btn-info', label: 'save' }
+      },
+      doc: { task: this }
+    }
+
+    var modal = ReactiveModal.initDialog(shareDialogInfo);
+
+    modal.buttons.save.on('click', function(button){
+
+      var taskId = $(modal.modalTarget).find('[name=taskId]').val();
+      var taskName = $(modal.modalTarget).find('[name=taskName]').val();
+      var taskDescription = $(modal.modalTarget).find('[name=taskDescription]').val();
+      var taskParams = {
+          name:taskName,
+          description:taskDescription,
+          subTasks:[]
+        };
+      console.log(taskId);
+      console.log(taskParams);
+      Meteor.call('updateTask', taskId, taskParams);
+      modal.hide();
+    });
+
+    modal.show();
+  },
+
   'click .startPomo': function (event) {
     //Meteor.call('startFocusPomo', 'WShuyzjQ6D9pAjRCj', 'bJNQtpCX5SmviBXWM');
   },

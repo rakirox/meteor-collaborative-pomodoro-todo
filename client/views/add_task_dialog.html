@@ -1,8 +1,11 @@
 <template name="addTaskDialog">
-    <p>This is your task, dude... add it!</p>
-    <label>Nombre</label>
-    <input type="text" name="taskName">
-    <label>Descripción</label>
-    <input type="text" name="taskDescription">
-
+  <input type="hidden" name="taskId" value="{{task._id}}">
+  <div class="form-group">
+    <label>NAME</label>
+    <input type="text" name="taskName" class="form-control" value="{{task.name}}">
+  </div>
+  <div class="form-group">
+    <label>DESCRIPTION</label>
+    <textarea name="taskDescription" rows="3" class="form-control">{{task.description}}</textarea>
+  </div>
 </template>

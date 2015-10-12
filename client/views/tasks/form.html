@@ -1,0 +1,14 @@
+<template name="taskForm">
+  <form>
+    <input name="_id" type="hidden" value="#{_id}" />
+
+    <div class="form-group">
+      <label>NAME</label>
+      <input class="form-control" type="text" name="name" placeholder="Untitled Post" value="#{title}">
+    </div>
+    <div class="form-group">
+      <label>DESCRIPTION</label>
+      <textarea name="description" class="form-control" placeholder="" rows='6'>{{{content}}}</textarea>
+    </div>
+  </form>
+</template>
