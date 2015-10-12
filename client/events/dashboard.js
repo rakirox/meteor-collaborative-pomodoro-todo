@@ -69,7 +69,12 @@ Template.Dashboard.events({
     initTenSecondsTask(this._id);
   },
   'click .todoTaskOption': function (event) {
-    Meteor.call('todoTask', this._id)
+    window.clearInterval(Session.get('interval'));
+    Session.set('secondsTimer', null);
+    Meteor.call('todoTask', this._id);
+  },
+  'click .doneTaskOption':function (event) {
+    Meteor.call('doneTask',this._id);
   }
 });
 
@@ -123,7 +128,6 @@ var doDiffuseTimer = function (taskId,rd) {
 doTimer = function (seconds, onComplete) {
   var count = 0,
       interval = 1000;
-
   function instance() {
     if(count++ == seconds) {
       window.clearInterval(Session.get('interval'));
