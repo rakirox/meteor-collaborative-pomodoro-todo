@@ -12,5 +12,11 @@ Template.Dashboard.helpers({
 	},
 	currentTask: function () {
 		return Session.get('currentTask');
-	}
+	},
+	currentPomodoro: function () {
+		return Session.get('currentPomodoro');
+	},
+	secondsTimer: function () {
+		return Session.get('secondsTimer');
+	},
 });

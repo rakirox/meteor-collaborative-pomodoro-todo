@@ -36,7 +36,7 @@ Template.Dashboard.events({
     //Meteor.call('startFocusPomo', 'WShuyzjQ6D9pAjRCj', 'bJNQtpCX5SmviBXWM');
   },
   'click .dropdown-menu a.doingTaskOption': function (event) {
-    Session.set('tenSecondsTimer', 10);
+    Session.set('secondsTimer', 10);
     initTenSecondsTask(this._id);
   }
 });
@@ -70,9 +70,24 @@ var initTenSecondsTask = function (taskId) {
   doTimer(10, function(){
     Meteor.call('doingTask',taskId);
     rd.hide();
+    doPomoTimer();
   });
 };
 
+var doPomoTimer = function () {
+  doTimer(60, function() {
+    Meteor.call('doingTask',taskId);
+    rd.hide();
+    doDiffuseTimer();
+  });
+};
+var doDiffuseTimer = function () {
+  doTimer(10, function() {
+    Meteor.call('doingTask',taskId);
+    rd.hide();
+    doPomoTimer();
+  });
+};
 doTimer = function (seconds, onComplete) {
   var count = 0,
       interval = 1000;
@@ -82,7 +97,7 @@ doTimer = function (seconds, onComplete) {
       window.clearInterval(Session.get('interval'));
         onComplete();
     } else {
-        Session.set('tenSecondsTimer', 10 - count);
+        Session.set('secondsTimer', seconds - count);
     }
   }
   intervalId = window.setInterval(instance, interval);
